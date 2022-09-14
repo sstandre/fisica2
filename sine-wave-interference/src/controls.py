@@ -48,4 +48,4 @@ range1.addEventListener("input", proxy)
 range2.addEventListener("input", proxy)
 
 
-plot_waveform(
+plot_waveform()

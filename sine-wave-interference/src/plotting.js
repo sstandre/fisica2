@@ -2,6 +2,7 @@ const chart = new Chart("chart", {
     type: "line",
     data: {
       datasets: [{
+          type: "line",
           borderColor: "#007cfb",
           backgroundColor: "#0062c5",
         }
@@ -15,6 +16,12 @@ const chart = new Chart("chart", {
       scales: {
         x: {display: false},
         y: {display: false}
+      },
+      elements: {
+        point: {
+            pointStyle: "cross",
+            radius: 10,
+        },
       },
     }
   })
