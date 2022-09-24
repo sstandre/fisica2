@@ -4,7 +4,6 @@ const chart = new Chart("chart", {
       datasets: [{
           type: "line",
           borderColor: "#007cfb",
-          backgroundColor: "#0062c5",
         }
       ]
     },
@@ -19,8 +18,11 @@ const chart = new Chart("chart", {
       },
       elements: {
         point: {
-            pointStyle: "cross",
-            radius: 10,
+          pointStyle: "circle",
+          radius: 0,
+        },
+        line: {
+          borderWidth: 1,
         },
       },
     }

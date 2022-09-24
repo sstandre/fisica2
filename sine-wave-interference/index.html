@@ -11,21 +11,21 @@
     <py-env>
       - numpy
       - paths:
-        - src/waves.py
+        - src/functions.py
     </py-env>
 </head>
 <body>
   <fieldset>
-    <legend>Frequency<sub>1</sub></legend>
+    <legend>Longitud<sub>1</sub></legend>
     <input id="range1"
-      type="range" min="440" max="442" step="0.1" value="440">
-    <label for="range1">440</label> Hz
+      type="range" min="400" max="600" step="1" value="500">
+    <label for="range1">500</label> nm
   </fieldset>
   <fieldset>
-    <legend>Frequency<sub>2</sub></legend>
+    <legend>Longitud<sub>2</sub></legend>
     <input id="range2"
-      type="range" min="440" max="442" step="0.1" value="441">
-    <label for="range2">441</label> Hz
+      type="range" min="400" max="600" step="1" value="400">
+    <label for="range2">400</label> nm
   </fieldset>
   <canvas id="chart"></canvas>
   <py-script src="src/controls.py"></py-script>

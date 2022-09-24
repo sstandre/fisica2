@@ -5,19 +5,24 @@ from pyodide import create_proxy, to_js
 
 from js import updateChart
 
-from waves import wave
+from functions import difraccion
 
 
 range1 = document.querySelector("#range1")
-
 range2 = document.querySelector("#range2")
 
 
-sampling_frequency = 800
+# sampling_frequency = 800
 
-seconds = 1.5
+# seconds = 1.5
 
-time = np.linspace(0, seconds, int(seconds * sampling_frequency))
+# time = np.linspace(0, seconds, int(seconds * sampling_frequency))
+
+L = 1
+a = 4.0e-6
+lam0 = 400e-9
+x_lim = 3.1*lam0*L/a
+x = np.linspace(-x_lim, x_lim, 1000)
 
 
 def on_range_update(event):
@@ -31,14 +36,14 @@ def on_range_update(event):
 
 def plot_waveform():
 
-    frequency1 = float(range1.value)
+    longitud1 = float(range1.value)
 
-    frequency2 = float(range2.value)
+    longitud2 = float(range2.value)
 
 
-    waveform = wave(frequency1)(time) + wave(frequency2)(time)
+    waveform = difraccion(x, longitud1*1e-9, L, a)
 
-    updateChart(to_js(time), to_js(waveform))
+    updateChart(to_js(x), to_js(waveform))
 
 
 proxy = create_proxy(on_range_update)
