@@ -1,4 +1,3 @@
-import wave
 import numpy as np
 
 from pyodide import create_proxy, to_js
@@ -6,7 +5,7 @@ from pyodide import create_proxy, to_js
 
 from js import updateChart
 
-from functions import difraccion
+from functions import difraccion, wavelength_to_rgb
 
 
 range1 = document.querySelector("#range1")
@@ -34,18 +33,25 @@ def on_range_update(event):
 
     plot_waveform()
 
+def wave_color(range):
+    longitud = float(range.value)
+    waveform = difraccion(x, longitud*1e-9, L, a)
+    color = wavelength_to_rgb(longitud)
+    return waveform, color
 
 def plot_waveform():
 
-    longitud1 = float(range1.value)
+    waveform1, color1 = wave_color(range1)
+    waveform2, color2 = wave_color(range2)
 
-    longitud2 = float(range2.value)
-
-
-    waveform1 = difraccion(x, longitud1*1e-9, L, a)
-    waveform2 = difraccion(x, longitud2*1e-9, L, a)
-
-    updateChart(to_js(x), to_js(waveform1), to_js(waveform2))
+    updateChart(*map(to_js, (
+        x,
+        waveform1,
+        waveform2,
+        color1,
+        color2
+        )
+    ))
 
 
 proxy = create_proxy(on_range_update)

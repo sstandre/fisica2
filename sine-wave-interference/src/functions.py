@@ -52,11 +52,11 @@ def wavelength_to_rgb(wavelength, gamma=0.8):
         R = 0.0
         G = 0.0
         B = 0.0
-    # R *= 255
-    # G *= 255
-    # B *= 255
-    # return (int(R), int(G), int(B))
-    return (R,G,B)
+    R = int(R*255)
+    G = int(255*G)
+    B = int(255*B)
+    # return in hex format
+    return "#"+''.join(hex(v)[2:].zfill(2) for v in (R,G,B))
 
 
 def difraccion(x, lam, L, a):

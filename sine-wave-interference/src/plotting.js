@@ -32,9 +32,11 @@ const chart = new Chart("chart", {
     }
   })
   
-  function updateChart(xValues, yValues1, yValues2) {
+  function updateChart(xValues, yValues1, yValues2, color1, color2) {
     chart.data.labels = xValues
     chart.data.datasets[0].data = yValues1
+    chart.data.datasets[0].borderColor = color1
     chart.data.datasets[1].data = yValues2
+    chart.data.datasets[1].borderColor = color2
     chart.update()
   }
