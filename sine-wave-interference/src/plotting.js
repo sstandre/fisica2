@@ -4,7 +4,11 @@ const chart = new Chart("chart", {
       datasets: [{
           type: "line",
           borderColor: "#007cfb",
-        }
+        },
+        {
+          type: "line",
+          borderColor: "#62c500",
+        },
       ]
     },
     options: {
@@ -28,8 +32,9 @@ const chart = new Chart("chart", {
     }
   })
   
-  function updateChart(xValues, yValues) {
+  function updateChart(xValues, yValues1, yValues2) {
     chart.data.labels = xValues
-    chart.data.datasets[0].data = yValues
+    chart.data.datasets[0].data = yValues1
+    chart.data.datasets[1].data = yValues2
     chart.update()
   }

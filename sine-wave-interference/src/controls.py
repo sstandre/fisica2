@@ -1,3 +1,4 @@
+import wave
 import numpy as np
 
 from pyodide import create_proxy, to_js
@@ -41,9 +42,10 @@ def plot_waveform():
     longitud2 = float(range2.value)
 
 
-    waveform = difraccion(x, longitud1*1e-9, L, a)
+    waveform1 = difraccion(x, longitud1*1e-9, L, a)
+    waveform2 = difraccion(x, longitud2*1e-9, L, a)
 
-    updateChart(to_js(x), to_js(waveform))
+    updateChart(to_js(x), to_js(waveform1), to_js(waveform2))
 
 
 proxy = create_proxy(on_range_update)
