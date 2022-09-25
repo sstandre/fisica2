@@ -33,6 +33,20 @@ p.on_change('value', callback)
 # row = Row(children=[p, div])
 row = layout([[p,div], [f]])
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 def doc_json(model, target):
     with OutputDocumentFor([model]) as doc:
         doc.title = ""
@@ -74,11 +88,6 @@ async def show(plot, target):
     views = await Bokeh.embed.embed_item(JSON.parse(model_json))
     jsdoc = views[0].model.document
     _link_docs(pydoc, jsdoc)
-
-
-
-
-
 
 
 await show(row, 'myplot')
