@@ -1,0 +1,35 @@
+<html>
+  <head>
+    <title>Ice Cream Picker</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://pyscript.net/latest/pyscript.css" />
+    <script defer src="https://pyscript.net/latest/pyscript.js"></script>
+    <py-env>
+      - matplotlib
+      - pandas
+      - paths:
+          - src/functions.py
+    </py-env>
+    </head>
+    <body>
+      <div id="input" style="margin: 20px;">
+        Select your 🍨 flavour: <br/>
+        <input type="radio" id="all" name="flavour" value="ALL">
+        <label for="all"> All 🍧</label>
+        <input type="radio" id="chocolate" name="flavour" value="COCOA">
+        <label for="chocolate"> Chocolate 🍫</label>
+        <input type="radio" id="cherrie" name="flavour" value="CHERRIES">
+        <label for="cherrie"> Cherries 🍒</label>
+        <input type="radio" id="berries" name="flavour" value="BERRY">
+        <label for="berries"> Berries 🍓</label>
+        <input type="radio" id="cheese" name="flavour" value="CHEESE">
+        <label for="cheese"> Cheese 🧀</label>
+        <input type="radio" id="peanut" name="flavour" value="PEANUT">
+        <label for="peanut"> Peanut 🥜</label>
+      </div>
+      <div id="viz"></div>
+      <py-script output="viz" src="src/controls.py">
+
+      </py-script>
+    </body>
+</html>
