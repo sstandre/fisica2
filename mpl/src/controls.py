@@ -14,7 +14,7 @@ from pyodide import create_proxy
 # )
 # ice_data = pd.read_csv(open_url(url))
 # current_selected = []
-# flavour_elements = document.getElementsByName("flavour")
+
 
 
 
@@ -41,6 +41,9 @@ x = np.linspace(-x_lim, x_lim, 100000)
 
 def plot(fig, ax, lam1, lam2, L, a):
     
+    Element("lam1_txt").write(f"{lam1} nm")
+    Element("lam2_txt").write(f"{lam2} nm")
+
     ax.clear()    
     y = difraccion(x, lam1*1e-9, L, a)
     y2 = difraccion(x, lam2*1e-9, L, a)
@@ -57,33 +60,17 @@ def plot(fig, ax, lam1, lam2, L, a):
     ax.legend()
 
     Element("viz").write(fig)
+    
 
+input_elements = document.getElementsByName("lam")
 
-# def plot(data):
-#     fig, ax = plt.subplots()
-#     bars = ax.barh(data["name"], data["rating"], height=0.7)
-#     ax.bar_label(bars)
-#     plt.title("Rating of ice cream flavours of your choice")
-#     pyscript.write("viz",fig)
+@create_proxy
+def change_lambda(event):
+    lam1, lam2 = [int(el.value) for el in input_elements]
+    plot(fig, ax, lam1, lam2, L, a)
 
-# @create_proxy
-# def select_flavour(event):
-#     for ele in flavour_elements:
-#         if ele.checked:
-#             current_selected = ele.value
-#             break
-#     if current_selected == "ALL":
-#         plot(ice_data)
-#     else:
-#         filter = ice_data.apply(lambda x: ele.value in x["ingredients"], axis=1)
-#         plot(ice_data[filter])
-
-
-# for ele in flavour_elements:
-#     if ele.value == "ALL":
-#       ele.checked = True
-#       current_selected = ele.value
-#     ele.addEventListener("change", select_flavour)
+for ele in input_elements:
+    ele.addEventListener("change", change_lambda)
 
 fig, ax = plt.subplots()
 plot(fig, ax, 400, 500, 1, 4e-6)
